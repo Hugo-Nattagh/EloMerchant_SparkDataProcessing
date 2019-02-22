@@ -35,10 +35,10 @@ object HSpark {
     for (dates <- 0 to lenDates-1) {
       println(dates, lenDates-1)
       var curDate = allDates(dates)
-      var specList = new Array[mutable.HashMap[String, Any]](10)
-      for (row <- 0 to 9) {
+      var specList = new Array[mutable.HashMap[String, Any]](dfiLength)
+      for (row <- 0 to dfiLength-1) {
         var rowS = row.toString
-        println(row, 9)
+        println(row, dfiLength-1)
         if (curDate == spark.sql("select purchase_date from tab where id = " + rowS).collect()(0)(0)) {
           var amount = spark.sql("select purchase_amount from tab where id = " + rowS).collect()(0)(0)
           var c_id = spark.sql("select card_id from tab where id = " + rowS).collect()(0)(0)
